@@ -31,6 +31,8 @@ def ricerca():
     radio = request.args["sel"]
     df = pd.read_csv('/workspace/flaskeserciziodbsquadre/templates/dati.csv')
     df1 = df[df[radio] == indice]
+    if indice not in df[radio].tolist():
+        return render_template("errore.html")
     return df1.to_html()
 
 if __name__ == '__main__':
